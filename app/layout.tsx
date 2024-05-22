@@ -1,6 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
+import getCurrentuser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
@@ -14,7 +15,9 @@ export const metadata = {
 	description: "Aribnb Clone",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+	const currentUser = await getCurrentuser();
+
 	return (
 		<html lang="en">
 			<body className={font.className}>
@@ -22,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<ToasterProvider />
 					<RegisterModal />
 					<LoginModal />
-					<Navbar />
+					<Navbar currentUser={currentUser} />
 				</ClientOnly>
 				{children}
 			</body>
