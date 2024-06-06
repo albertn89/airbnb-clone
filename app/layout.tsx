@@ -1,7 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
-import getCurrentuser from "./actions/getCurrentUser";
+import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
 
 import ClientOnly from "./components/ClientOnly";
@@ -18,7 +18,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-	const currentUser = await getCurrentuser();
+	const currentUser = await getCurrentUser();
 
 	return (
 		<html lang="en">
